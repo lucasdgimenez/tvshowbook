@@ -18,7 +18,7 @@ require 'config.php';
         </div>
     </header>
     <section class="container main">
-        <form>
+        <form method="POST" action="<?=$base;?>/signup_action.php">
             <div class="form-group">
                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Digite seu nome completo" name="name">
             </div>
@@ -32,8 +32,11 @@ require 'config.php';
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Digite sua data de nascimento" name="birthdate" id="birthdate">
+                <input type="text" class="form-control" placeholder="Digite sua data de nascimento" name="birthdate" id="birthdate">
             </div>
+
+            <!--<input placeholder="Digite sua data de nascimento" class="input" type="text" name="birthdate" id="birthdate"/>-->
+
 
             <button type="submit" class="btn btn-primary mt-3">Fazer cadastro</button>
 
@@ -45,6 +48,8 @@ require 'config.php';
 
     <script src="https://unpkg.com/imask"></script>
     <script>
+        let teste = document.getElementById("birthdate")
+        console.log("teste: ", teste);
         IMask(
             document.getElementById("birthdate"),
             {mask: '00/00/0000'}
