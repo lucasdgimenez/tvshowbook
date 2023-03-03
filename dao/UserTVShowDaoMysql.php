@@ -56,23 +56,61 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
         if($sql->rowCount() > 0) {
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             //3- Transformar o resultado em objetos
-            $array = $this->_postListToObject($data, $id_user);
+            $array = $this->_postListToObject($data, $id);
         }
 
         return $array;
     }
 
+    public function getLikeslist($id) {
+        $sql = $this->pdo->query("SELECT * from tvshows INNER JOIN userlikes ON (tvshows.id = userlikes.tvshow_id) WHERE userlikes.user_id = $id");
+
+        if($sql->rowCount() > 0) {
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            //3- Transformar o resultado em objetos
+            $array = $this->_postListToObject($data, $id);
+        }
+
+        return $array;
+    }
+
+    public function getFavoriteslist($id) {
+        $sql = $this->pdo->query("SELECT * from tvshows INNER JOIN userfavorites ON (tvshows.id = userfavorites.tvshow_id) WHERE userfavorites.user_id = $id");
+
+        if($sql->rowCount() > 0) {
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            //3- Transformar o resultado em objetos
+            $array = $this->_postListToObject($data, $id);
+        }
+
+        return $array;
+    }
+
+    public function getAlreadySeeList($id) {
+        $sql = $this->pdo->query("SELECT * from tvshows INNER JOIN useralreadysee ON (tvshows.id = useralreadysee.tvshow_id) WHERE useralreadysee.user_id = $id");
+
+        if($sql->rowCount() > 0) {
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            //3- Transformar o resultado em objetos
+            $array = $this->_postListToObject($data, $id);
+        }
+
+        return $array;
+    }
+
+
     private function _postListToObject($tvshow_list, $id_user) {
 
         foreach($tvshow_list as $tvshow_item) {
-            $newPost = new TvShow();
-            $newPost->id = $tvshow_item['id'];
-            $newPost->name = $tvshow_item['name'];
-            $newPost->genres = $tvshow_item['genres'];
-            $newPost->capa = $tvshow_item['capa'];
-            $newPost->description = $tvshow_item['description']; 
 
-            $tvshows[] = $newPost;
+            $s = new TvShow();
+            $s->setId($tvshow_item['id']);
+            $s->setName($tvshow_item['name']);
+            $s->setGenres($tvshow_item['genres']);
+            $s->setCapa($tvshow_item['capa']);
+            $s->setDescription($tvshow_item['description']);
+
+            $tvshows[] = $s;
         }
 
         return $tvshows;

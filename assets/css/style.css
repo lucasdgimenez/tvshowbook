@@ -323,13 +323,8 @@ header .head-side {
     margin-right:15px;
 }
 
-.friend-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
 .full-friend-list {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    display: flex;
 }
 
 .friend-icon {
@@ -508,10 +503,6 @@ header .head-side {
 
     .profile-info-data {
         margin-top:30px;
-    }
-
-    .full-friend-list {
-        grid-template-columns: repeat(3, 1fr);
     }
 
     .full-user-photos {

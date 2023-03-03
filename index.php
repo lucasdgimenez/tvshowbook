@@ -9,29 +9,37 @@ $activeMenu = 'home';
 
 $tvShowDao = new TvShowDAOMySql($pdo);
 $tvshows = $tvShowDao->getListTvShow();
+/*
+echo '<pre>';
+print_r($tvshows);*/
 
 require 'partials/header.php';
 require 'partials/menu.php';
 ?>
 
-<section class="feed mt-10">
-    <div>
-        <h1><?=$_SESSION['frase'];?></h1>
-        <?php if(!empty($_SESSION['frase'])): ?>
+<section class="mt-10" style="background: pink; max-width: 800px;">
+    <?php if(!empty($_SESSION['frase'])): ?>
         <div class="alert alert-success" role="alert">
             <?=$_SESSION['frase'];?> <a href="#" class="alert-link">Clique aqui</a> para ver a sua lista atual
             <?php $_SESSION['frase'] = ''; ?>
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
 
-        <div class="">
-            <?php foreach($tvshows as $item): ?>
-                <?php require 'partials/tvshow-item.php'; ?>
-            <?php endforeach; ?>
-        </div>
-
+    <div class="list-tvshows">
+        <?php foreach($tvshows as $item): ?>
+            <?php require 'partials/tvshow-item.php'; ?>
+        <?php endforeach; ?>
     </div>
+
 </section>
+
+<style>
+    .list-tvshows {
+        display: flex;
+        background: orange;
+        width: 700px;
+    }
+</style>
 
 <?php 
 require 'partials/footer.php';

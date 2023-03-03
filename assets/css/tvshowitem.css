@@ -1,7 +1,6 @@
 .tvshowItem {
-    background-color: blueviolet;
-    display: flex;
-    max-width: 400px;
+    max-width: 800px;
+    background-color: #CCC;
 }
 
 .tvshowItem_image {
@@ -14,4 +13,19 @@
 
 img {
     max-width: 250px;
+}
+
+.button {
+    border: 0;
+    padding: 10px 20px;
+    background-color: #4a76a8;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 15px;
+    box-shadow: 0px 0px 3px #999;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #85b7e9;
 }

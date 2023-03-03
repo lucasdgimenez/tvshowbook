@@ -10,7 +10,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="<?=$base;?>">
+                <!--<a href="<?=$base;?>">
                     <div class="menu-item <?=$activeMenu=='feed'?'active':'';?>">
                         <div class="menu-item-icon">
                             <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
@@ -19,10 +19,10 @@
                             Feed
                         </div>
                     </div>
-                </a>
+                </a>-->
 
                 <a href="tvshow_watchlist.php">
-                    <div class="menu-item <?=$activeMenu=='feed'?'active':'';?>">
+                    <div class="menu-item <?=$activeMenu=='watchlist'?'active':'';?>">
                         <div class="menu-item-icon">
                             <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
                         </div>
@@ -32,8 +32,8 @@
                     </div>
                 </a>
 
-                <a href="<?=$base;?>">
-                    <div class="menu-item <?=$activeMenu=='feed'?'active':'';?>">
+                <a href="tvshow_alreadysee.php">
+                    <div class="menu-item <?=$activeMenu=='alreadysee'?'active':'';?>">
                         <div class="menu-item-icon">
                             <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
                         </div>
@@ -43,8 +43,8 @@
                     </div>
                 </a>
 
-                <a href="<?=$base;?>">
-                    <div class="menu-item <?=$activeMenu=='feed'?'active':'';?>">
+                <a href="tvshow_likes.php">
+                    <div class="menu-item <?=$activeMenu=='likes'?'active':'';?>">
                         <div class="menu-item-icon">
                             <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
                         </div>
@@ -54,13 +54,13 @@
                     </div>
                 </a>
 
-                <a href="<?=$base;?>">
+                <a href="tvshow_favorites.php">
                     <div class="menu-item <?=$activeMenu=='feed'?'active':'';?>">
                         <div class="menu-item-icon">
                             <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
                         </div>
                         <div class="menu-item-text">
-                            Series favorias
+                            Series favoritas
                         </div>
                     </div>
                 </a>

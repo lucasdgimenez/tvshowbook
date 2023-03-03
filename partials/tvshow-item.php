@@ -2,41 +2,32 @@
 
 ?>
 
-<div class="box feed-item">
-    <div class="box-body">
-            <div class="feed-item-head row mt-20 m-width-20">
-                <div class="feed-item-head-info">
-                    <a class="itemTvShow" href="<?=$base;?>/tvshowitemdetails.php?id=<?=$item->id;?>">
-                        <div type="submit">
-                            <img src="<?=$item->capa;?>" alt="">
-                            <h3><?=$item->name;?></h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="feed-item-head-btn">
-                    <img src="<?=$base;?>/assets/images/more.png" />
-                </div>
-            </div>
-        
+    <a class="itemTvShow" href="<?=$base;?>/tvshowitemdetails.php?id=<?=$item->id;?>">
+        <div class="">
+            <img src="<?=$item->capa;?>" alt="">
+            
         </div>
-    
-    </div>
-</div>
+        <div class="">
+            <h4><?=$item->name;?></h4>
+        </div>
+    </a>
+        <!--</div>-->
 
 <style>
-    img {
-        max-width: 250px;
+    
+    .itemTvShow img {
+        max-width: 200px;
+        height: 150px;
     }
 
     .itemTvShow {
         background-color: red;
         max-width: 300px;
-
+        margin: 5px;
     }
 
     .itemTvShow div {
-        background-color: yellow;
+        /*background-color: yellow;*/
         max-width: 300px;
         display: flex;
         flex-direction: column;
