@@ -8,6 +8,18 @@ class TvShowDAOMySql implements TvShowDAO {
         $this->pdo = $driver;
     }
 
+    public function generateTvShow($array, $full = false) {
+        $s = new TvShow();
+
+        $s->setId($array['id']);
+        $s->setName($array['name']);
+        $s->setGenres($array['genres']);
+        $s->setCapa($array['capa']);
+        $s->setDescription($array['description']);
+
+        return $s;
+    }
+
     public function getListTvShow() {
         $array = [];
 
@@ -50,6 +62,27 @@ class TvShowDAOMySql implements TvShowDAO {
         } else {
             return false;
         }
+    }
+
+    public function findByName($name) {
+        $array = [];
+
+        if(!empty($name)) { 
+            echo "Entramos 1";
+            $sql = $this->pdo->prepare("SELECT * FROM tvshows WHERE name LIKE :name");
+            $sql->bindValue(':name', '%'.$name.'%');
+            $sql->execute();
+
+            if($sql->rowCount() > 0) {
+                $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($data as $item) {
+                    $array[] = $this->generateTvShow($item);
+                }
+            }
+        }
+
+        return $array;
     }
 }
 

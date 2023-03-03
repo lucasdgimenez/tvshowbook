@@ -24,7 +24,7 @@
                 <a href="tvshow_watchlist.php">
                     <div class="menu-item <?=$activeMenu=='watchlist'?'active':'';?>">
                         <div class="menu-item-icon">
-                            <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
+                            <img src="<?=$base;?>/assets/images/bookmark.png" width="16" height="16" />
                         </div>
                         <div class="menu-item-text">
                             Assistir mais tarde
@@ -35,7 +35,7 @@
                 <a href="tvshow_alreadysee.php">
                     <div class="menu-item <?=$activeMenu=='alreadysee'?'active':'';?>">
                         <div class="menu-item-icon">
-                            <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
+                            <img src="<?=$base;?>/assets/images/check-mark.png" width="16" height="16" />
                         </div>
                         <div class="menu-item-text">
                             Serias finalizadas
@@ -46,7 +46,7 @@
                 <a href="tvshow_likes.php">
                     <div class="menu-item <?=$activeMenu=='likes'?'active':'';?>">
                         <div class="menu-item-icon">
-                            <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
+                            <img src="<?=$base;?>/assets/images/like.png" width="16" height="16" />
                         </div>
                         <div class="menu-item-text">
                             Series curtidas
@@ -55,9 +55,9 @@
                 </a>
 
                 <a href="tvshow_favorites.php">
-                    <div class="menu-item <?=$activeMenu=='feed'?'active':'';?>">
+                    <div class="menu-item <?=$activeMenu=='favorites'?'active':'';?>">
                         <div class="menu-item-icon">
-                            <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
+                            <img src="<?=$base;?>/assets/images/heart.png" width="16" height="16" />
                         </div>
                         <div class="menu-item-text">
                             Series favoritas

@@ -1,9 +1,11 @@
 <?php 
 require_once 'config.php';
+require_once 'models/Auth.php';
 require_once 'dao/TvShowDaoMysql.php';
+require_once 'dao/UserTVShowDaoMysql.php';
 
-/*$auth = new Auth($pdo, $base);
-$userInfo = $auth->checkToken();*/
+$auth = new Auth($pdo, $base);
+$userInfo = $auth->checkToken();
 $activeMenu = 'home';
 
 $tvshow = false;
@@ -18,6 +20,12 @@ if($tvshow === false) {
     header("Location: index.php");
     exit;
 }
+
+$UserTvShowDao = new UserTVShowDaoMysql($pdo);
+$isAlreadySee = $UserTvShowDao->isAlreadySee($userInfo->id, $id);
+$isWatchlist = $UserTvShowDao->isWatchlist($userInfo->id, $id);
+$isLike = $UserTvShowDao->isLike($userInfo->id, $id);
+$isFavorite = $UserTvShowDao->isFavorite($userInfo->id, $id);
 
 require 'partials/header.php';
 require 'partials/menu.php';
@@ -42,19 +50,76 @@ require 'partials/menu.php';
 
             <div class="tvshowItem_description">
                 <h1><?=$tvshow->name;?></h1>
-                <div >
-                    <a href="alreadysee_action.php?id=<?=$tvshow->id;?>" class="button" style="margin: 8px;">
-                        Já vi
-                    </a>
-                    <a href="watchlist_action.php?id=<?=$tvshow->id;?>" class="button" style="margin: 8px;">
-                        Quero ver
-                    </a>
-                    <a href="like_action.php?id=<?=$id;?>" class="button" style="margin: 8px;">
-                        Gostei
-                    </a>
-                    <a href="favorite_action.php?id=<?=$id;?>" class="button" style="margin: 8px;">
-                        Favoritar
-                    </a>
+                <div>
+                    <?php if(!$isAlreadySee):?>
+                        <a 
+                            href="alreadysee_action.php?id=<?=$tvshow->id;?>" 
+                            class="button" 
+                            style="margin: 8px;"
+                        >
+                            Já vi
+                        </a>
+                        <?php else:?>
+                        <a 
+                            href="alreadysee_action.php?id=<?=$tvshow->id;?>" 
+                            class="button" 
+                            style="margin: 8px; background: green"
+                        >
+                            <img src="<?=$base;?>/assets/images/check-mark.png" width="16" height="16" alt="">
+                            Já vi
+                        </a>
+                        <?php endif;?>
+      
+                    <?php if(!$isWatchlist):?>
+                        <a 
+                            href="watchlist_action.php?id=<?=$tvshow->id;?>" class="button" 
+                            style="margin: 8px;"
+                        >
+                            Quero ver
+                        </a>
+                        <?php else:?>
+                        <a 
+                            href="watchlist_action.php?id=<?=$tvshow->id;?>" class="button" 
+                            style="margin: 8px; background: green"
+                        >
+                            <img src="<?=$base;?>/assets/images/check-mark.png" width="16" height="16" alt="">
+                            Quero ver
+                        </a>
+                    <?php endif;?>
+                    
+                    <?php if(!$isLike):?>
+                        <a 
+                            href="like_action.php?id=<?=$id;?>" class="button" 
+                            style="margin: 8px;"
+                        >
+                            Gostei
+                        </a>
+                        <?php else:?>
+                        <a 
+                            href="like_action.php?id=<?=$id;?>" class="button" 
+                            style="margin: 8px; background: green"
+                        >
+                            <img src="<?=$base;?>/assets/images/check-mark.png" width="16" height="16" alt="">
+                            Gostei
+                        </a>
+                    <?php endif;?>
+
+                    <?php if(!$isFavorite):?>
+                        <a 
+                            href="favorite_action.php?id=<?=$id;?>" class="button" 
+                            style="margin: 8px;"
+                        >
+                            Favoritar
+                        </a>
+                        <?php else:?>
+                        <a 
+                            href="favorite_action.php?id=<?=$id;?>" class="button" 
+                            style="margin: 8px; background: green"
+                        >
+                            <img src="<?=$base;?>/assets/images/check-mark.png" width="16" height="16" alt="">
+                            Favoritar
+                        </a>
+                    <?php endif;?>
                 </div>
                 <p class="mt-5" ><?=$tvshow->description;?></p>
             </div>

@@ -15,7 +15,7 @@ if($idTvShow) {
     $frase = "Serie adicionada";
 
     $_SESSION['frase'] = $frase;
-    header("Location: ".$base);
+    header("Location: tvshowitemdetails.php?id=".$base);
     exit;
 }
 

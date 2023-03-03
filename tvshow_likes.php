@@ -20,7 +20,7 @@ require 'partials/menu.php';
 ?>
 <section class="mt-10" style="background: pink; max-width: 800px;">
 
-<h1>Assistir mais tarde</h1>
+<h1>Series curtidas</h1>
 
     <div class="list-tvshows">
         <?php foreach($tvShow as $item): ?>

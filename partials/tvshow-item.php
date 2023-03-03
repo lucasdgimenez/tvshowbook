@@ -21,7 +21,6 @@
     }
 
     .itemTvShow {
-        background-color: red;
         max-width: 300px;
         margin: 5px;
     }

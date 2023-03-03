@@ -17,7 +17,7 @@ require 'partials/header.php';
 require 'partials/menu.php';
 ?>
 
-<section class="mt-10" style="background: pink; max-width: 800px;">
+<section class="mt-10" style="max-width: 800px;">
     <?php if(!empty($_SESSION['frase'])): ?>
         <div class="alert alert-success" role="alert">
             <?=$_SESSION['frase'];?> <a href="#" class="alert-link">Clique aqui</a> para ver a sua lista atual
@@ -36,11 +36,8 @@ require 'partials/menu.php';
 <style>
     .list-tvshows {
         display: flex;
-        background: orange;
+        flex-wrap: wrap;
         width: 700px;
     }
 </style>
 
-<?php 
-require 'partials/footer.php';
-?>

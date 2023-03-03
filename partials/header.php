@@ -22,7 +22,9 @@
                 </div>
                 <div class="head-side-right">
                     <a href="<?=$base;?>/perfil.php" class="user-area">
-                        <div class="user-area-text">Nome</div>
+                        <div class="user-area-text">
+                            <?=$userInfo->name;?>
+                        </div>
                         <div class="user-area-icon">
                             <!--<img src="media/avatars/" />-->
                         </div>

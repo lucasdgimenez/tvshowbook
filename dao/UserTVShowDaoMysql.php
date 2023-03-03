@@ -98,6 +98,66 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
         return $array;
     }
 
+    public function isWatchlist($id, $idTvShow) {
+        $sql = $this->pdo->prepare("SELECT * FROM userwatchlist WHERE
+        user_id = :user_id AND tvshow_id = :tvshow_id");
+
+        $sql->bindValue(':user_id', $id);
+        $sql->bindValue(':tvshow_id', $idTvShow);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isAlreadySee($id, $idTvShow) {
+        $sql = $this->pdo->prepare("SELECT * FROM useralreadysee WHERE
+        user_id = :user_id AND tvshow_id = :tvshow_id");
+
+        $sql->bindValue(':user_id', $id);
+        $sql->bindValue(':tvshow_id', $idTvShow);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isLike($id, $idTvShow) {
+        $sql = $this->pdo->prepare("SELECT * FROM userlikes WHERE
+        user_id = :user_id AND tvshow_id = :tvshow_id");
+
+        $sql->bindValue(':user_id', $id);
+        $sql->bindValue(':tvshow_id', $idTvShow);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isFavorite($id, $idTvShow) {
+        $sql = $this->pdo->prepare("SELECT * FROM userfavorites WHERE
+        user_id = :user_id AND tvshow_id = :tvshow_id");
+
+        $sql->bindValue(':user_id', $id);
+        $sql->bindValue(':tvshow_id', $idTvShow);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     private function _postListToObject($tvshow_list, $id_user) {
 

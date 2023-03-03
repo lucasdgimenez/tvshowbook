@@ -30,14 +30,12 @@ require 'partials/menu.php';
 
 </section>
 
-    <style>
+<style>
 
 .list-tvshows {
-        display: flex;
-        background: orange;
-        width: 700px;
-    }
+    display: flex;
+    width: 700px;
+}
     
-   
 </style>
                

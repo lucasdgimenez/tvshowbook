@@ -13,7 +13,7 @@ if($idTvShow) {
     $userDao = new UserDaoMysql($pdo);
     $userTVShowDao->addTvShowLikes($userInfo->id, $idTvShow);
 
-    header("Location: ".$base);
+    header("Location: tvshowitemdetails.php?id=".$base);
     exit;
 }
 
