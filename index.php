@@ -16,6 +16,13 @@ require 'partials/menu.php';
 
 <section class="feed mt-10">
     <div>
+        <h1><?=$_SESSION['frase'];?></h1>
+        <?php if(!empty($_SESSION['frase'])): ?>
+        <div class="alert alert-success" role="alert">
+            <?=$_SESSION['frase'];?> <a href="#" class="alert-link">Clique aqui</a> para ver a sua lista atual
+            <?php $_SESSION['frase'] = ''; ?>
+        </div>
+        <?php endif; ?>
 
         <div class="">
             <?php foreach($tvshows as $item): ?>

@@ -18,6 +18,16 @@ class UserDaoMysql implements UserDAO {
         $u->avatar = $array['avatar'] ?? '';
         $u->token = $array['token'] ?? '';
 
+        if($full) {
+            $urDaoMysql = new UserRelationDaoMysql($this->pdo);
+            // followers 
+            $u->followers = $urDaoMysql->getWatchlist($u->id);
+            foreach ($u->followers as $key => $follower_id) {
+                $newUser = $this->findById($follower_id);
+                $u->followers[$key] = $newUser;
+            }
+        }
+
         return $u;
     }
 

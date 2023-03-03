@@ -21,7 +21,7 @@
                     </div>
                 </a>
 
-                <a href="<?=$base;?>">
+                <a href="tvshow_watchlist.php">
                     <div class="menu-item <?=$activeMenu=='feed'?'active':'';?>">
                         <div class="menu-item-icon">
                             <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />

@@ -11,10 +11,8 @@ $idTvShow = filter_input(INPUT_GET, 'id');
 if($idTvShow) {
     $userTVShowDao = new UserTVShowDaoMysql($pdo);
     $userDao = new UserDaoMysql($pdo);
-    $userTVShowDao->addTvShowWatchList($userInfo->id, $idTvShow);
-    $frase = "Serie adicionada";
+    $userTVShowDao->addTvShowFavorites($userInfo->id, $idTvShow);
 
-    $_SESSION['frase'] = $frase;
     header("Location: ".$base);
     exit;
 }
