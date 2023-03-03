@@ -18,7 +18,7 @@ $tvShow = $tvShowDao->getLikeslist($userInfo->id);
 require 'partials/header.php';
 require 'partials/menu.php';
 ?>
-<section class="mt-10" style="background: pink; max-width: 800px;">
+<section class="mt-10" style=" max-width: 800px;">
 
 <h1>Series curtidas</h1>
 
@@ -34,7 +34,7 @@ require 'partials/menu.php';
 
 .list-tvshows {
         display: flex;
-        background: orange;
+        ;
         width: 700px;
     }
     

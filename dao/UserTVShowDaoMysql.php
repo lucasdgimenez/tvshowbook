@@ -19,6 +19,15 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
         $sql->execute();
     }
 
+    public function deleteTvShowWatchList($id, $idTvShow) {
+        $sql = $this->pdo->prepare("DELETE FROM userwatchlist
+        WHERE user_id = :user_id AND tvshow_id = :tvshow_id");
+
+        $sql->bindValue(':user_id', $id);
+        $sql->bindValue(':tvshow_id', $idTvShow);
+        $sql->execute();
+    }
+
     public function addTvShowAlreadySee($id, $idTvShow) {
         echo "Entrou 2".$id. " - ".$idTvShow;
         $sql = $this->pdo->prepare("INSERT INTO useralreadysee
@@ -51,7 +60,7 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
     }
 
     public function getWatchlist($id) {
-        $sql = $this->pdo->query("SELECT * from tvshows INNER JOIN userwatchlist ON (tvshows.id = userwatchlist.tvshow_id) WHERE userwatchlist.user_id = $id");
+        $sql = $this->pdo->query("SELECT tvshows.id, tvshows.name, tvshows.genres, tvshows.capa, tvshows.description from tvshows INNER JOIN userwatchlist ON (tvshows.id = userwatchlist.tvshow_id) WHERE userwatchlist.user_id = $id");
 
         if($sql->rowCount() > 0) {
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -63,7 +72,7 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
     }
 
     public function getLikeslist($id) {
-        $sql = $this->pdo->query("SELECT * from tvshows INNER JOIN userlikes ON (tvshows.id = userlikes.tvshow_id) WHERE userlikes.user_id = $id");
+        $sql = $this->pdo->query("SELECT tvshows.id, tvshows.name, tvshows.genres, tvshows.capa, tvshows.description from tvshows INNER JOIN userlikes ON (tvshows.id = userlikes.tvshow_id) WHERE userlikes.user_id = $id");
 
         if($sql->rowCount() > 0) {
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -75,7 +84,7 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
     }
 
     public function getFavoriteslist($id) {
-        $sql = $this->pdo->query("SELECT * from tvshows INNER JOIN userfavorites ON (tvshows.id = userfavorites.tvshow_id) WHERE userfavorites.user_id = $id");
+        $sql = $this->pdo->query("SELECT tvshows.id, tvshows.name, tvshows.genres, tvshows.capa, tvshows.description from tvshows INNER JOIN userfavorites ON (tvshows.id = userfavorites.tvshow_id) WHERE userfavorites.user_id = $id");
 
         if($sql->rowCount() > 0) {
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -87,7 +96,7 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
     }
 
     public function getAlreadySeeList($id) {
-        $sql = $this->pdo->query("SELECT * from tvshows INNER JOIN useralreadysee ON (tvshows.id = useralreadysee.tvshow_id) WHERE useralreadysee.user_id = $id");
+        $sql = $this->pdo->query("SELECT tvshows.id, tvshows.name, tvshows.genres, tvshows.capa, tvshows.description from tvshows INNER JOIN useralreadysee ON (tvshows.id = useralreadysee.tvshow_id) WHERE useralreadysee.user_id = $id");
 
         if($sql->rowCount() > 0) {
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);

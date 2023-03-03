@@ -43,6 +43,18 @@ require 'partials/menu.php';
 </head>
 <body>
     <section class="tvshowItem mt-10">
+        <?php if(!empty($_SESSION['frase'])): ?>
+            <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p><?=$_SESSION['frase'];?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
         <div style="display: flex;">
             <div class="tvshowItem_image">
                 <img src="<?=$tvshow->capa;?>" alt="">

@@ -18,7 +18,7 @@ $tvShow = $tvShowDao->getWatchlist($userInfo->id);
 require 'partials/header.php';
 require 'partials/menu.php';
 ?>
-<section class="mt-10" style="background: pink; max-width: 800px;">
+<section class="mt-10" style=" max-width: 800px;">
 
 <h1>Assistir mais tarde</h1>
 
@@ -31,11 +31,10 @@ require 'partials/menu.php';
 </section>
 
 <style>
-
-.list-tvshows {
-    display: flex;
-    width: 700px;
-}
-    
+    .list-tvshows {
+        display: flex;
+        flex-wrap: wrap;
+        width: 700px;
+    }
 </style>
                
