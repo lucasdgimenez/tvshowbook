@@ -8,12 +8,23 @@ $userInfo = $auth->checkToken();
 
 $idTvShow = filter_input(INPUT_GET, 'id');
 
+$UserTvShowDao = new UserTVShowDaoMysql($pdo);
+$isAlreadySee = $UserTvShowDao->isAlreadySee($userInfo->id, $idTvShow);
+
 if($idTvShow) {
     $userTVShowDao = new UserTVShowDaoMysql($pdo);
     $userDao = new UserDaoMysql($pdo);
-    $userTVShowDao->addTvShowAlreadySee($userInfo->id, $idTvShow);
 
-    header("Location: tvshowitemdetails.php?id=".$base);
+    if($isAlreadySee) {
+        $userTVShowDao->deleteTvShowAlreadySee($userInfo->id, $idTvShow);
+    } else {
+        $userTVShowDao->addTvShowAlreadySee($userInfo->id, $idTvShow);
+    }
+
+    $frase = "Serie finalizada com sucesso";
+    $_SESSION['frase'] = $frase;
+
+    header("Location: ".$base);
     exit;
 }
 

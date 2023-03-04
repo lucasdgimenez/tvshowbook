@@ -23,12 +23,11 @@ if($idTvShow) {
     } else {
         $userTVShowDao->addTvShowWatchList($userInfo->id, $idTvShow);
     }
-    
 
-    $frase = "Serie adicionada";
+    $frase = "Serie adicionada com sucesso";
     $_SESSION['frase'] = $frase;
 
-    header("Location: tvshowitemdetails.php?id=".$base);
+    header("Location: tvshowitemdetails.php?id=".$$base);
     exit;
 }
 

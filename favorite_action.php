@@ -8,12 +8,23 @@ $userInfo = $auth->checkToken();
 
 $idTvShow = filter_input(INPUT_GET, 'id');
 
+$UserTvShowDao = new UserTVShowDaoMysql($pdo);
+$isFavorite = $UserTvShowDao->isFavorite($userInfo->id, $idTvShow);
+
 if($idTvShow) {
     $userTVShowDao = new UserTVShowDaoMysql($pdo);
     $userDao = new UserDaoMysql($pdo);
-    $userTVShowDao->addTvShowFavorites($userInfo->id, $idTvShow);
 
-    header("Location: tvshowitemdetails.php?id=".$base);
+    if($isFavorite) {
+        $userTVShowDao->deleteTvShowFavorites($userInfo->id, $idTvShow);
+    } else {
+        $userTVShowDao->addTvShowFavorites($userInfo->id, $idTvShow);
+    }
+
+    $frase = "Serie favoritada com sucesso";
+    $_SESSION['frase'] = $frase;
+
+    header("Location: ".$base);
     exit;
 }
 

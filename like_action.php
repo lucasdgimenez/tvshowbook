@@ -8,12 +8,23 @@ $userInfo = $auth->checkToken();
 
 $idTvShow = filter_input(INPUT_GET, 'id');
 
+$UserTvShowDao = new UserTVShowDaoMysql($pdo);
+$isLike = $UserTvShowDao->isLike($userInfo->id, $idTvShow);
+
 if($idTvShow) {
     $userTVShowDao = new UserTVShowDaoMysql($pdo);
     $userDao = new UserDaoMysql($pdo);
-    $userTVShowDao->addTvShowLikes($userInfo->id, $idTvShow);
 
-    header("Location: tvshowitemdetails.php?id=".$base);
+    if($isLike) {
+        $userTVShowDao->deleteTvShowLikes($userInfo->id, $idTvShow);
+    } else {
+        $userTVShowDao->addTvShowLikes($userInfo->id, $idTvShow);
+    }
+
+    $frase = "Serie curtida com sucesso";
+    $_SESSION['frase'] = $frase;
+
+    header("Location: ".$base);
     exit;
 }
 

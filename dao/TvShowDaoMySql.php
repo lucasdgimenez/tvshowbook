@@ -68,7 +68,6 @@ class TvShowDAOMySql implements TvShowDAO {
         $array = [];
 
         if(!empty($name)) { 
-            echo "Entramos 1";
             $sql = $this->pdo->prepare("SELECT * FROM tvshows WHERE name LIKE :name");
             $sql->bindValue(':name', '%'.$name.'%');
             $sql->execute();

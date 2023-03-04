@@ -39,6 +39,15 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
         $sql->execute();
     }
 
+    public function deleteTvShowAlreadySee($id, $idTvShow) {
+        $sql = $this->pdo->prepare("DELETE FROM useralreadySee
+        WHERE user_id = :user_id AND tvshow_id = :tvshow_id");
+
+        $sql->bindValue(':user_id', $id);
+        $sql->bindValue(':tvshow_id', $idTvShow);
+        $sql->execute();
+    }
+
     public function addTvShowLikes($id, $idTvShow) {
         $sql = $this->pdo->prepare("INSERT INTO userlikes
         (user_id, tvshow_id) VALUES 
@@ -49,10 +58,28 @@ class UserTVShowDaoMysql implements UserTVShowDAO {
         $sql->execute();
     }
 
+    public function deleteTvShowLikes($id, $idTvShow) {
+        $sql = $this->pdo->prepare("DELETE FROM userlikes
+        WHERE user_id = :user_id AND tvshow_id = :tvshow_id");
+
+        $sql->bindValue(':user_id', $id);
+        $sql->bindValue(':tvshow_id', $idTvShow);
+        $sql->execute();
+    }
+
     public function addTvShowFavorites($id, $idTvShow) {
         $sql = $this->pdo->prepare("INSERT INTO userfavorites
         (user_id, tvshow_id) VALUES 
         (:user_id, :tvshow_id)");
+
+        $sql->bindValue(':user_id', $id);
+        $sql->bindValue(':tvshow_id', $idTvShow);
+        $sql->execute();
+    }
+
+    public function deleteTvShowFavorites($id, $idTvShow) {
+        $sql = $this->pdo->prepare("DELETE FROM userfavorites
+        WHERE user_id = :user_id AND tvshow_id = :tvshow_id");
 
         $sql->bindValue(':user_id', $id);
         $sql->bindValue(':tvshow_id', $idTvShow);
